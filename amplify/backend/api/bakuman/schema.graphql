@@ -1,0 +1,16 @@
+type Plan @model {
+  id: ID!
+  deadline: AWSDate!
+  startDate: AWSDate!
+  pageCount: Int!
+  process: [Int!]!
+  uptime: [Int!]!
+  steps: [Step!]!
+}
+
+type Step {
+  id: ID!
+  order: Int!
+  label: String!
+  timePerPage: Float!
+}
