@@ -8,6 +8,7 @@ export const createPlan = /* GraphQL */ `
   ) {
     createPlan(input: $input, condition: $condition) {
       id
+      owner
       deadline
       startDate
       pageCount
@@ -31,6 +32,7 @@ export const updatePlan = /* GraphQL */ `
   ) {
     updatePlan(input: $input, condition: $condition) {
       id
+      owner
       deadline
       startDate
       pageCount
@@ -54,6 +56,7 @@ export const deletePlan = /* GraphQL */ `
   ) {
     deletePlan(input: $input, condition: $condition) {
       id
+      owner
       deadline
       startDate
       pageCount

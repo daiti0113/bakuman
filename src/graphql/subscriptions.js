@@ -2,9 +2,10 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreatePlan = /* GraphQL */ `
-  subscription OnCreatePlan {
-    onCreatePlan {
+  subscription OnCreatePlan($owner: String!) {
+    onCreatePlan(owner: $owner) {
       id
+      owner
       deadline
       startDate
       pageCount
@@ -22,9 +23,10 @@ export const onCreatePlan = /* GraphQL */ `
   }
 `;
 export const onUpdatePlan = /* GraphQL */ `
-  subscription OnUpdatePlan {
-    onUpdatePlan {
+  subscription OnUpdatePlan($owner: String!) {
+    onUpdatePlan(owner: $owner) {
       id
+      owner
       deadline
       startDate
       pageCount
@@ -42,9 +44,10 @@ export const onUpdatePlan = /* GraphQL */ `
   }
 `;
 export const onDeletePlan = /* GraphQL */ `
-  subscription OnDeletePlan {
-    onDeletePlan {
+  subscription OnDeletePlan($owner: String!) {
+    onDeletePlan(owner: $owner) {
       id
+      owner
       deadline
       startDate
       pageCount

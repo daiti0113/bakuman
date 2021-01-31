@@ -1,6 +1,6 @@
 import React, {createContext, useReducer} from "react"
 import {createReducer} from "../helpers/store"
-// import {Auth} from "aws-amplify"
+import {Auth} from "aws-amplify"
 
 const initialState = {
   isLoggedIn: true,
@@ -50,7 +50,7 @@ export const signup = async (dispatch, username, password, email, nickname, gend
 
 export const logout = async (dispatch) => {
   try {
-    // await Auth.signOut({global: true})
+    await Auth.signOut({global: true})
   } catch (error) {
     console.log("error signing out: ", error)
   }

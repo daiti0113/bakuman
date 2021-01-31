@@ -4,7 +4,6 @@
 export const getPlan = /* GraphQL */ `
   query GetPlan($id: ID!) {
     getPlan(id: $id) {
-      id
       deadline
       startDate
       pageCount
@@ -30,6 +29,7 @@ export const listPlans = /* GraphQL */ `
     listPlans(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        owner
         deadline
         startDate
         pageCount

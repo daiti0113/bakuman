@@ -3,14 +3,13 @@ import {Text, View} from "react-native"
 import {StyleSheet} from "react-native"
 import {defaultStyle} from "../styles/defaultStyle"
 import {Button} from "react-native-paper"
-import {API, graphqlOperation} from "aws-amplify"
+import {API, Auth, graphqlOperation} from "aws-amplify"
 import {createPlan} from "../graphql/mutations"
 import {listPlans} from "../graphql/queries"
 
 const styles = StyleSheet.create(defaultStyle)
 
 const formState = {
-  id: 1,
   deadline: "2021-02-28",
   startDate: "2021-02-01",
   pageCount: 16,
@@ -38,19 +37,21 @@ const HomeScreenInner = ({navigation}) => {
 
   const fetchPlans = async () => {
     try {
-      const planData = await API.graphql(graphqlOperation(listPlans))
+      const user = await Auth.currentUserInfo()
+      const planData = await API.graphql(graphqlOperation(listPlans, {owner: user.username}))
       const plans = planData.data.listPlans.items
       console.log(plans)
       setPlans(plans)
-    } catch (err) {console.log("error fetching todos: ", err)}
+    } catch (err) {console.log("error fetching plans: ", err)}
   }
 
   const addPlan = async () => {
     try {
+      const user = await Auth.currentUserInfo()
       const plan = {...formState}
-      await API.graphql(graphqlOperation(createPlan, {input: plan}))
+      await API.graphql(graphqlOperation(createPlan, {input: plan, owner: user.username}))
     } catch (err) {
-      console.log("error creating todo:", err)
+      console.log("error creating plan:", err)
     }
   }
   
@@ -59,7 +60,10 @@ const HomeScreenInner = ({navigation}) => {
       <Text>ここはHomeです。</Text>
       <Button onPress={addPlan}>Add Plan</Button>
       <Button onPress={fetchPlans}>Fetch Plans</Button>
-      <Text>期限：{plans.length > 0 ? plans[0].deadline : "Loading..."}</Text>
+      {plans.length > 0
+        ? plans.map(plan => <Text key={plan.id}>{plan.id}</Text>)
+        : <Text>Loading...</Text>
+      }
     </View>
   )
 }
