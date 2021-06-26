@@ -1,20 +1,22 @@
 import React from "react"
-import {View, TouchableWithoutFeedback, Keyboard, StyleSheet} from "react-native"
+import {ScrollView, TouchableWithoutFeedback, Keyboard, StyleSheet} from "react-native"
 
 const styles = StyleSheet.create({
-  container: {
+  contentContainer: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"
+  },
+  container: {
+    backgroundColor: "#fff"
   }
 })
 
 export const ScreenContainer = ({children}) => 
   <DissmissKeyboard>
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       {children}
-    </View>
+    </ScrollView>
   </DissmissKeyboard>
 
 const DissmissKeyboard = ({children}) =>
