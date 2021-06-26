@@ -66,6 +66,6 @@ const HomeScreenInner = ({navigation}) => {
       }
     </View>
   )
-}
+} // TODO: 入力フォーム作る
 
 export const HomeScreen = HomeScreenInner

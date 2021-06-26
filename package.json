@@ -11,6 +11,7 @@
     "clearCache": "NODE_ENV=development expo start --clear"
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "^3.0.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/netinfo": "5.9.6",
     "@react-navigation/material-bottom-tabs": "^5.3.10",

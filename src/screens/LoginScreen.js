@@ -4,6 +4,7 @@ import {TabScreen} from "./TabScreen"
 import {NavigationContainer} from "@react-navigation/native"
 import {AuthProvider, authStore} from "../stores/authStore"
 import {Login} from "../scenes/login/Login"
+import {WelcomeScreen} from "./WelcomeScreen"
 // import {Signup} from "../scenes/login/Signup"
 
 const Stack = createStackNavigator()
@@ -23,6 +24,7 @@ const LoginScreenInner = () => {
       <Stack.Navigator {...navigatorProps}>
         {isLoggedIn
           ? <>
+            <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
             <Stack.Screen name="TabScreen" component={TabScreen} />
           </>
           : <>
