@@ -2,12 +2,8 @@ import React from "react"
 import {DefaultTheme, Provider as PaperProvider} from "react-native-paper"
 import {StatusBar} from "react-native"
 import {SafeAreaProvider} from "react-native-safe-area-context"
-import {LoginScreen} from "./src/screens/LoginScreen"
-import Amplify from "aws-amplify"
-import config from "./src/aws-exports"
-import {withAuthenticator} from "aws-amplify-react-native"
+import {LoginScreen} from "./src/screens/AppScreen"
 
-Amplify.configure(config)
 
 
 // デフォルトのテーマを変更可能
@@ -20,8 +16,7 @@ const theme = {
   }
 }
 
-const App = () => {
-
+export default function App() {
   return (
     <SafeAreaProvider>
       <PaperProvider theme={theme}>
@@ -31,5 +26,3 @@ const App = () => {
     </SafeAreaProvider>
   )
 }
-
-export default withAuthenticator(App)

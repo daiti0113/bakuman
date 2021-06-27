@@ -1,7 +1,8 @@
 import React, {createContext, useReducer} from "react"
-import {createReducer} from "../helpers/store"
+import {createReducer} from "./helpers/store"
 
 const initialState = {
+  isFirstLaunch: true,
   draftPlan: {
     deadline: new Date,
     startDate: new Date,
@@ -13,7 +14,7 @@ const initialState = {
 }
 
 // Define Store
-const planStore = createContext(initialState)
+const store = createContext(initialState)
 
 // Define Types
 const UPDATE_DRAFT_PLAN = "UPDATE_DRAFT_PLAN"
@@ -26,8 +27,8 @@ export const updateDraftPlan = async (dispatch, data) => {
 
 
 // Defin Provider
-const {Provider} = planStore
-const PlanProvider = ({children}) => {
+const {Provider} = store
+const StoreProvider = ({children}) => {
   // Define Reducer
   const [state, dispatch] = useReducer(createReducer(initialState, {
     [UPDATE_DRAFT_PLAN]: (state, {payload}) => ({...state, draftPlan: {...state.draftPlan, ...payload}})
@@ -36,4 +37,4 @@ const PlanProvider = ({children}) => {
   return <Provider value={{state, dispatch}}>{children}</Provider>
 }
 
-export {planStore, PlanProvider}
+export {store, StoreProvider}
