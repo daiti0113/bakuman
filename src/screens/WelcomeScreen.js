@@ -3,13 +3,13 @@ import {Text} from "react-native"
 import {Button, TextInput} from "react-native-paper"
 import {DatePicker} from "../components/DatePicker"
 import {Checkbox} from "../components/Checkbox"
-import {StoreProvider, store, updateDraftPlan} from "../store"
+import {store, updateDraftPlan} from "../store"
 import {ScreenContainer} from "../components/ScreenContainer"
 import {getData, saveData} from "../helpers/storage"
 
 
 // eslint-disable-next-line
-const WelcomeScreenInner = ({navigation}) => {
+export const WelcomeScreen = ({navigation}) => {
   const {state: {draftPlan}, dispatch} = useContext(store)
   const [plans, setPlans] = useState([])
 
@@ -18,8 +18,8 @@ const WelcomeScreenInner = ({navigation}) => {
     setPlans([plan])
   }
 
-  const addPlan = () => saveData("plan", draftPlan)
-  
+  const addPlan = async () => await saveData("plan", draftPlan)
+
   return (
     <ScreenContainer>
       <Text>締切日</Text>
@@ -57,6 +57,4 @@ const WelcomeScreenInner = ({navigation}) => {
       }
     </ScreenContainer>
   )
-} // TODO: 入力フォーム作る
-
-export const WelcomeScreen = () => <StoreProvider><WelcomeScreenInner /></StoreProvider>
+}
